@@ -1,0 +1,258 @@
+
+@font-face {
+    font-family: Thai;
+    src: url('./fonts/PADTHAI_.TTF');
+}
+@font-face {
+  font-family: Retro;
+  src: url('./fonts/RetroGaming.ttf');
+}
+body {
+    font-family: 'Retro', Courier, monospace;
+    text-align: center;
+    height:100vh;
+  }
+  
+  .fighter {
+    width: 180px;
+    height: 180px;
+    margin: 20px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .fighter:hover {
+    transform: scale(1.15); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .title {
+    display: flex;
+    font-size: 36px;
+    font-weight: 900;
+    color: yellow;
+    text-shadow: 5px 5px black;
+    margin: 0;
+    align-items: center;
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    gap: 52px;
+    max-width: 800px;
+  }
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height:100%;
+    height:38%;
+    background-color: #24205A;
+    color: white;
+  }
+  
+  .info {
+    padding:16px;
+  }
+  /* .info img {
+    position:absolute;
+    left:0;
+    transition: opacity 1s ease-in-out;
+  }
+  .info img.front:hover {
+    opacity: 0;
+    cursor: pointer;
+    transition: 1s ease-out;
+  }
+  .info img.back {
+    opacity: 0;
+    cursor: pointer;
+  }
+  .info img.back:hover {
+    opacity: 1;
+    cursor: pointer;
+    transition: opacity 1s ease-in-out;
+  } */
+
+  header, footer {
+    height:100px;
+    background-color:#E71D26;
+    height:14%;
+    display: flex;
+    justify-content: center;
+}
+
+  .white {
+    height:17%;
+    display: flex;
+    justify-content: center;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .info h2 {
+    margin-bottom: 5px;
+    margin-top:5px;
+    font-family: Thai, Verdana, Geneva, Tahoma, sans-serif;
+  }
+  p {
+    margin: 15px 0 0 0;
+  }
+  .text {
+    margin-bottom: 10px;
+  }
+  .hidden {
+    display: none;
+  }
+  button {
+    display: flex;
+    justify-content: center;
+    max-width:200px;
+    padding: 8px 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    margin: 1em;
+    color: white;
+    background-color: #E71D26;
+    border: 5px solid transparent;
+    transition: .2s ease;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Retro', Courier, monospace;
+    text-shadow: 0.5px 0.5px black;
+  }
+  button:hover {
+    color: #E71D26;
+    background-color: white;
+    transform: scale(1.1);
+    border: 5px solid #E71D26;
+  }
+  .game-controls {
+    justify-content: space-around;
+  }
+  .game-controls div {
+    min-width:200px;
+    padding: 8px 16px 0px 16px;
+  }
+  .game-controls h2 {
+    margin-top: 0;
+  }
+
+  .flag-wave {
+
+
+	background-image:
+		-webkit-gradient(
+			linear,
+			0 -25%,
+			100% top,
+			color-stop(0%,rgba(255,255,255,0)),
+			color-stop(20%,rgba(255,255,255,0)),
+      color-stop(30%,rgba(0,0,0,.04)),
+			color-stop(40%,rgba(255,255,255,.2)),
+      color-stop(60%,rgba(255,255,255,0)),
+    	color-stop(65%,rgba(255,255,255,.2)),
+			color-stop(80%,rgba(0,0,0,.05)),
+			color-stop(100%,rgba(255,255,255,0)));
+
+	background-size: 200%;
+  
+	-webkit-animation-name: flutter;
+	-webkit-animation-duration: 14s;
+	-webkit-animation-timing-function: cubic-bezier(.16,.14,.82,.73);
+	-webkit-animation-iteration-count: infinite;
+}
+
+
+@-webkit-keyframes flutter {
+
+	0% {
+		background-position: -200% 0px;
+	}
+
+  30% {
+		background-position: -60% 5px;
+	}
+  
+   70% {
+		background-position: 70% -5px;
+	}
+  
+	100% {
+		background-position: 200% 0px;
+	}
+}
+
+@-webkit-keyframes wave {
+
+	0% {
+		box-shadow: 4px 5px 5px 0 rgba(0,0,0,0.1);
+        -webkit-transform: translate3d(0, 0, 0) rotateZ(5deg) rotateY(22deg);
+
+	}
+
+	20% {
+		box-shadow: 4px 5px 15px 0 rgba(0,0,0,0.1);
+     -webkit-transform: translate3d(0, 0, 0) rotateZ(5deg) rotateY(0deg);
+	}
+
+  40% {
+		box-shadow: 4px 5px 20px 0 rgba(0,0,0,0.4);
+   -webkit-transform: translate3d(0, 0, 0) rotateZ(6deg) rotateY(-22deg);
+	}
+  
+  	60% {
+		box-shadow: 4px 5px 5px 0 rgba(0,0,0,0.1);
+     -webkit-transform: translate3d(0, 0, 0) rotateZ(5deg) rotateY(0deg);
+	}
+
+  80% {
+		box-shadow: 4px 5px 5px 0 rgba(0,0,0,0.3);
+   -webkit-transform: translate3d(0, 0, 0) rotateZ(5deg) rotateY(16deg);
+	}
+  
+	100% {
+		box-shadow: 4px 5px 5px 0 rgba(0,0,0,0.1);
+   -webkit-transform: translate3d(0, 0, 0) rotateZ(5deg) rotateY(22deg);
+	}
+}
+
+.fade-in {
+  animation: fadeIn ease 1.5s;
+  -webkit-animation: fadeIn ease 1.5s;
+  -moz-animation: fadeIn ease 1.5s;
+  -o-animation: fadeIn ease 1.5s;
+  -ms-animation: fadeIn ease 1.5s;
+}
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}

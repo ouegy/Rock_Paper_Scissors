@@ -4,9 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./script.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="./script.js" defer></script>
 </head>
 <body>
-    
+    <header class="flag-wave">
+        <h1 class="title">Rock, paper, scissors - Muay Thai style!</h1>
+    </header>
+    <div class="white flag-wave">
+        <div class="container">
+            <div class="content">
+                <p>Choose a Muay Thai fighting style.</p>
+                <p>The computer will choose one at random, and we'll see who comes out on top in the clash of styles.</p>    
+                <button id="play">Play Game</button>
+              </div>
+        </div>
+    </div>
+    <div class="wrapper flag-wave">
+        <div class="container">
+          <div class="info">
+            <h2>Muay Khao</h2>
+            <div class="text">the knee fighter</div>
+            <img data-key="muay-khao" data-sound="tiger" data-fighter="dieselnoi" class="fighter" src="./images/dieselnoi.png" alt="dieselnoi">
+            <h2 data-key="muay-khao" class="icon hidden">Dieselnoi</h2>
+          </div>
+          <div class="info">
+            <h2>Muay Mat</h2>
+            <div class="text">the heavy hitter</div>
+            <img data-key="muay-mat" data-sound="tiger-uppercut" data-fighter="sagat" class="fighter" src="./images/sagat.png" alt="pepper">
+            <h2 data-key="muay-mat" class="icon hidden">Sagat</h2>
+          </div>
+          <div class="info">
+            <h2>Muay Femur</h2>
+            <div class="text">the technician</div>
+            <img data-key="muay-femur" data-sound="tiger" data-fighter="samart" class="fighter" src="./images/samart.png" alt="chili">
+            <h2 data-key="muay-femur" class="icon hidden">Samart</h2>
+          </div>
+        </div>
+    </div>
+    <div class="white game-controls">
+      <div class="container">
+        <div class="game-sounds">
+          <h2>Sounds</h2>
+        </div>
+        <div class="game-score">
+          <h2>Score</h2>
+        </div>
+        <div class="round-result">
+          <h2>Round Result</h2>
+        </div>
+      </div>
+    </div>
+    <footer class="flag-wave"></footer>
+
+    <audio data-key="tiger" src="sounds/sagat-tiger.mp3"></audio>
+    <audio data-key="tiger-uppercut" src="sounds/sagat-tiger-uppercut.mp3"></audio>
+    <audio data-key="you-win" src="sounds/you-win-street-fighter.mp3"></audio>
+    <audio data-key="you-lose" src="sounds/you-lose.mp3"></audio>
+    <audio data-key="coin" src="sounds/coin_3.mp3"></audio>
+    <audio data-key="background" src="sounds/traditional-thai-music.mp3" controls></audio>
+
 </body>
 </html>
