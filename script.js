@@ -105,7 +105,7 @@ function getPlayerChoice(e) {
 
 function playRound(playerChoice, computerChoice) {
     if (playerChoice == computerChoice) {
-        round_result.textContent = "The game is a draw";
+        round_result.textContent = `Computer chose ${computerChoice}. The game is a draw`;
     }
     if (playerChoice == "Dieselnoi") {
         switch (computerChoice) {
@@ -173,7 +173,7 @@ function playGameEndSound() {
     }
     setTimeout(() => {
         sound.play();
-      }, "1200");
+      }, "1500");
     
 }
 
