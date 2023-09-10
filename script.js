@@ -1,180 +1,223 @@
+let playerScore = 0;
+let computerScore = 0;
+
 const mouseTarget = Array.from(document.querySelectorAll(".fighter"));
 mouseTarget.forEach((item) => {
-    item.addEventListener('mouseenter', displayIcon);
     item.addEventListener('mouseenter', enlargeImage);
-    item.addEventListener('click', playSound);
-    item.addEventListener('mouseleave', removeIcon);
+    item.addEventListener('mouseenter', displayname);
+    item.addEventListener('mouseleave', removename);
     item.addEventListener('mouseleave', reduceImage);
 });
-console.log(mouseTarget);
-function displayIcon(e) {
-// if data-key of .fighter image matches data-key of .icon image, remove hidden class    
-    const icons = Array.from(document.querySelectorAll(".icon"));
+
+const play = document.getElementById("play");
+    play.addEventListener('click', () => {
+        initialiseGame();
+    });
+
+function displayname(e) {
+    const names = Array.from(document.querySelectorAll(".name"));
     const key = e.srcElement.dataset.key;
-    icons.forEach((item) => {
-        const iconKey = item.dataset.key;
-        if(key == iconKey) {
-            item.classList.remove('hidden');
+    names.forEach((item) => {
+        const nameKey = item.dataset.key;
+        if(key === nameKey) {
+            item.classList.remove('hidden'); 
             item.classList.add('fade-in');
         }
     });  
 };
-function removeIcon(e) {
-    const icons = Array.from(document.querySelectorAll(".icon"));
+
+function removename(e) {
+    const names = Array.from(document.querySelectorAll(".name"));
     const key = e.srcElement.dataset.key;
-    icons.forEach((item) => {
-        const iconKey = item.dataset.key;
-        if(key == iconKey) {
+    names.forEach((item) => {
+        const nameKey = item.dataset.key;
+        if(key == nameKey) {
             item.classList.add('hidden');
         }
     });
 } 
-function playSound(e) {
-    //console.log(this);
-    console.log(e);
-    const audio = document.querySelector(`audio[data-key="${e.target.dataset.sound}"]`);
-    console.log(audio);
-    audio.currentTime = 0;
-    audio.play();
-}
+
 function enlargeImage(e) {
     const fighter = document.querySelector(`img[data-fighter="${e.srcElement.dataset.fighter}"]`);
-    console.log(fighter.src);
     fighter.src = `./images/${e.srcElement.dataset.fighter}-hover.png`;
+    const name = document.getElementsByClassName('name')
 }
+
 function reduceImage(e) {
     const fighter = document.querySelector(`img[data-fighter="${e.srcElement.dataset.fighter}"]`);
-    console.log(fighter.src);
     fighter.src = `./images/${e.srcElement.dataset.fighter}.png`;
 }
 
-function playGame() {
-    const play = document.getElementById("play");
-    //console.log(play);
-    play.addEventListener('click', () => {
-        initialiseGame();
-    });
-}
-
 function initialiseGame() {
+    mouseTarget.forEach((item) => {
+        item.addEventListener('click', playSound);
+        item.addEventListener('click', getPlayerChoice);
+    });
     const coin = document.querySelector("audio[data-key='coin']");
     const background = document.querySelector("audio[data-key='background']");
     coin.currentTime = 0;
     coin.play();
     background.currentTime = 0;
     background.play();
+    removeWinningMessage();
+    removeRoundResult();
+    resetScoreUI();
+}
+function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.target.dataset.sound}"]`);
+    audio.currentTime = 0;
+    audio.play();
 }
 
-playGame();
+function getComputerChoice() {
+    let randomInt = getRandomInt(3);
+    switch (randomInt) {
+        case 0:
+            computerChoice = "Dieselnoi";
+            break;
+        case 1:
+            computerChoice = "Sagat";
+            break; 
+        case 2:
+            computerChoice = "Samart";
+            break;               
+        default:
+            break;
+    }
+}
 
-// let playerScore = 0;
-// let computerScore = 0;
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
 
-// function getComputerChoice() {
-//     let randomInt = getRandomInt(3);
-//     switch (randomInt) {
-//         case 0:
-//             computerChoice = "rock";
-//             console.log(`The computer chose ${computerChoice}`)
-//             break;
-//         case 1:
-//             computerChoice = "paper";
-//             console.log(`The computer chose ${computerChoice}`)
-//             break; 
-//         case 2:
-//             computerChoice = "scissors";
-//             console.log(`The computer chose ${computerChoice}`)
-//             break;               
-//         default:
-//             break;
-//     }
-//     console.log(computerChoice);
-//     console.log(typeof computerChoice);
-//     return computerChoice;
-// }
+function getPlayerChoice(e) {
+    let playerChoice = e.srcElement.dataset.fighter;
+    getComputerChoice();
+    playRound(playerChoice, computerChoice);
+    updateScore();
+    if (playerScore == 3) {
+        endGame();
+    }
+    else if (computerScore == 3) {
+        endGame();
+    }
+}
 
-// function getRandomInt(max) {
-//     return Math.floor(Math.random() * max);
-// }
+function playRound(playerChoice, computerChoice) {
+    if (playerChoice == computerChoice) {
+        round_result.textContent = "The game is a draw";
+    }
+    if (playerChoice == "Dieselnoi") {
+        switch (computerChoice) {
+            case "Samart":
+                round_result.textContent = `Computer chose ${computerChoice}. Dieselnoi beat Samart when they fought. Player Wins!`;  
+                playerScore++;
+                break;
+            case "Sagat":
+                round_result.textContent = `Computer chose ${computerChoice}. Sagat beat Dieselnoi in 2 of their 3 fights. Computer wins!`;
+                computerScore++;
+                break;
+            default:
+        }
+    }
+    if (playerChoice == "Sagat") {
+        switch (computerChoice) {
+            case "Dieselnoi":
+                round_result.textContent = `Computer chose ${computerChoice}. Sagat beat Dieselnoi in 2 of their 3 fights. Player wins!`;  
+                playerScore++;
+                break;
+            case "Samart":
+                round_result.textContent = `Computer chose ${computerChoice}. Muay Femur is the counter to Muay Mat. Computer wins!`;
+                computerScore++;
+                break;
+            default:
+        }
+    }
+    if (playerChoice == "Samart") {
+        switch (computerChoice) {
+            case "Dieselnoi":
+                round_result.textContent = `Computer chose ${computerChoice}. Dieselnoi beat Samart when they fought. Computer Wins!`;  
+                computerScore++;
+                break;
+            case "Sagat":
+                round_result.textContent = `Computer chose ${computerChoice}. Muay Femur is the counter to Muay Mat. Player wins!`;
+                playerScore++;
+                break;
+            default:
+        }
+    }
+}
 
-// function getPlayerChoice() {
-//     playerChoice = prompt("Enter your choice. Either: Rock, Paper or Scissors");
-//     if (playerChoice === null) {
-//         console.log("The player left the game");
-//         return;
-//     }
-//     else if (playerChoice != null) {
-//         switch (playerChoice.toLowerCase()) {
-//             case "rock":
-//                 console.log(`Player chose ${playerChoice}`);
-//                 break;
-//             case "paper":
-//                 console.log(`Player chose ${playerChoice}`);
-//                 break; 
-//             case "scissors":
-//                 console.log(`Player chose ${playerChoice}`);
-//                 break;             
-//             default:
-//                 alert("That is not a valid choice, please try again!");
-//                 console.log("That is not a valid choice, please try again!");
-//                 break;
-//         }  
-//     }
+function updateScore() {
+    let playerScoreUI = document.getElementById("player_score");
+    playerScoreUI.textContent = playerScore;
+    let computerScoreUI = document.getElementById("computer_score");
+    computerScoreUI.textContent = computerScore;
+}
+
+function removeRoundResult() {
+    let round_result = document.getElementById("round_result"); 
+    round_result.textContent = ""; 
+}
+
+function playGameEndSound() {
+    var sound;
+    if(computerScore == 0 && playerScore == 3) {
+       sound = document.querySelector("audio[data-key='you-win-perfect']");
+    }
+    else if(playerScore == 3 && computerScore != 0) {
+        sound = document.querySelector("audio[data-key='you-win']");
+    }
+    else if(computerScore == 3) {
+        sound = document.querySelector("audio[data-key='you-lose']");
+    }
+    setTimeout(() => {
+        sound.play();
+      }, "1200");
     
-//     console.log(playerChoice);
-//     console.log(typeof playerChoice);
-//     return playerChoice;
-// }
+}
 
-// function playRound(computerChoice, playerChoice) {
-
-//     // computerChoice = getComputerChoice();
-//     if (playerChoice === computerChoice) {
-//         console.log("The game is a draw!");
-//         console.log(playerScore);
-//         console.log(computerScore);
-//     }
-//     else if ( (playerChoice == "rock" && computerChoice == "scissors")
-//         || (playerChoice == "paper" && computerChoice == "rock")
-//         || (playerChoice == "scissors" && computerChoice == "paper") ) {
-//             console.log("Player wins!");
-//             playerScore++;
-//             console.log(playerScore);
-//             console.log(computerScore);
-//         }
-//     else if ( (playerChoice == "rock" && computerChoice == "paper")
-//     || (playerChoice == "paper" && computerChoice == "scissors")
-//     || (playerChoice == "scissors" && computerChoice == "rock") ) {
-//         console.log("Computer wins!");
-//         computerScore++;
-//         console.log(playerScore);
-//         console.log(computerScore);
-//     }
-// }
-
-// function game() {
-//     initialiseGame();
-//     do {
-//         initialiseGame();
-//         console.log(playerScore);
-//         console.log(computerScore);
-//     } while (playerScore < 5 && computerScore < 5);
-
-//         if (playerScore == 5) {
-//             console.log("Player wins the best of 5!");
-//         }
-//         else if (computerScore == 5) {
-//             console.log("Computer wins the best of 5!");
-//         }
+function displayWinningMessage() {
+    let winning_message = document.getElementById("winning_message");
+    if(computerScore == 0 && playerScore == 3) {
+        winning_message.textContent = "You Win - perfect!";
+    }
+    else if (playerScore == 3 && computerScore != 0) {
+        winning_message.textContent = "You Win!";
+    }
+    else if (computerScore == 3) {
+        winning_message.textContent = "You Lose!";
+    }
     
-// }
-// function initialiseGame() {
-//     getComputerChoice();
-//     getPlayerChoice();
-//     playRound(computerChoice, playerChoice);
-// }
-//game();
-// I can only pass the arguments in to the playRound() function after getComputerChoice() and getPlayerChoice()
-// getComputerChoice();
-// getPlayerChoice();
-// playRound(computerChoice, playerChoice);
+}
+
+function removeWinningMessage() {
+    let winning_message = document.getElementById("winning_message");
+    winning_message.textContent = "";
+}
+
+function resetScore() {
+    playerScore = 0;
+    computerScore = 0;
+}
+
+function resetScoreUI() {
+    let playerScoreUI = document.getElementById("player_score");
+    playerScoreUI.textContent = "0";
+    let computerScoreUI = document.getElementById("computer_score");
+    computerScoreUI.textContent = "0";
+}
+
+function endGame() {
+    mouseTarget.forEach((item) => {
+        item.removeEventListener('click', playSound);
+        item.removeEventListener('click', getPlayerChoice);
+    });
+    const background = document.querySelector("audio[data-key='background']");
+    background.pause();
+    playGameEndSound();
+    displayWinningMessage();
+    resetScore();
+}
+
+

@@ -23,7 +23,7 @@ body {
   .fighter:hover {
     transform: scale(1.15); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   }
-  .icon {
+  .name {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,25 +57,6 @@ body {
   .info {
     padding:16px;
   }
-  /* .info img {
-    position:absolute;
-    left:0;
-    transition: opacity 1s ease-in-out;
-  }
-  .info img.front:hover {
-    opacity: 0;
-    cursor: pointer;
-    transition: 1s ease-out;
-  }
-  .info img.back {
-    opacity: 0;
-    cursor: pointer;
-  }
-  .info img.back:hover {
-    opacity: 1;
-    cursor: pointer;
-    transition: opacity 1s ease-in-out;
-  } */
 
   header, footer {
     height:100px;
@@ -136,16 +117,32 @@ body {
     border: 5px solid #E71D26;
   }
   .game-controls {
+    display: flex;
     justify-content: space-around;
-  }
-  .game-controls div {
-    min-width:200px;
-    padding: 8px 16px 0px 16px;
   }
   .game-controls h2 {
     margin-top: 0;
   }
-
+  .game-sounds, .game-score,  .round-result  {
+    padding: 8px 16px 0px 16px;
+    min-width: 232px;
+  }
+  .game-score-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:25px;
+    padding: 8px 16px 0px 16px;
+  }
+  .player {
+    width:111px;
+  }
+  .game-score h2 {
+    margin-bottom: 0px;;
+  }
+  .game-score span {
+    font-size:36px;
+  }
   .flag-wave {
 
 
