@@ -40,7 +40,7 @@ function removename(e) {
 function enlargeImage(e) {
     const fighter = document.querySelector(`img[data-fighter="${e.srcElement.dataset.fighter}"]`);
     fighter.src = `./images/${e.srcElement.dataset.fighter}-hover.png`;
-    const name = document.getElementsByClassName('name')
+    //const name = document.getElementsByClassName('name')
 }
 
 function reduceImage(e) {
@@ -73,13 +73,13 @@ function getComputerChoice() {
     let randomInt = getRandomInt(3);
     switch (randomInt) {
         case 0:
-            computerChoice = "Dieselnoi";
+            computerChoice = "dieselnoi";
             break;
         case 1:
-            computerChoice = "Sagat";
+            computerChoice = "sagat";
             break; 
         case 2:
-            computerChoice = "Samart";
+            computerChoice = "samart";
             break;               
         default:
             break;
@@ -107,39 +107,39 @@ function playRound(playerChoice, computerChoice) {
     if (playerChoice == computerChoice) {
         round_result.textContent = `Computer chose ${computerChoice}. The game is a draw`;
     }
-    if (playerChoice == "Dieselnoi") {
+    if (playerChoice == "dieselnoi") {
         switch (computerChoice) {
-            case "Samart":
+            case "samart":
                 round_result.textContent = `Computer chose ${computerChoice}. Dieselnoi beat Samart when they fought. Player Wins!`;  
                 playerScore++;
                 break;
-            case "Sagat":
+            case "sagat":
                 round_result.textContent = `Computer chose ${computerChoice}. Sagat beat Dieselnoi in 2 of their 3 fights. Computer wins!`;
                 computerScore++;
                 break;
             default:
         }
     }
-    if (playerChoice == "Sagat") {
+    if (playerChoice == "sagat") {
         switch (computerChoice) {
-            case "Dieselnoi":
+            case "dieselnoi":
                 round_result.textContent = `Computer chose ${computerChoice}. Sagat beat Dieselnoi in 2 of their 3 fights. Player wins!`;  
                 playerScore++;
                 break;
-            case "Samart":
+            case "samart":
                 round_result.textContent = `Computer chose ${computerChoice}. Muay Femur is the counter to Muay Mat. Computer wins!`;
                 computerScore++;
                 break;
             default:
         }
     }
-    if (playerChoice == "Samart") {
+    if (playerChoice == "samart") {
         switch (computerChoice) {
-            case "Dieselnoi":
+            case "dieselnoi":
                 round_result.textContent = `Computer chose ${computerChoice}. Dieselnoi beat Samart when they fought. Computer Wins!`;  
                 computerScore++;
                 break;
-            case "Sagat":
+            case "sagat":
                 round_result.textContent = `Computer chose ${computerChoice}. Muay Femur is the counter to Muay Mat. Player wins!`;
                 playerScore++;
                 break;
