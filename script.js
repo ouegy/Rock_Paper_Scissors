@@ -62,6 +62,7 @@ function initialiseGame() {
     removeWinningMessage();
     removeRoundResult();
     resetScoreUI();
+    resetScore();
 }
 function playSound(e) {
     const audio = document.querySelector(`audio[data-key="${e.target.dataset.sound}"]`);
@@ -219,5 +220,6 @@ function endGame() {
     displayWinningMessage();
     resetScore();
 }
+
 
 
